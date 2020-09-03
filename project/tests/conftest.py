@@ -1,8 +1,9 @@
 # project/tests/conftest.py
 
 import pytest
-from project.api.models import User
+
 from project import create_app, db
+from project.api.models import User
 
 
 @pytest.fixture(scope="module")
