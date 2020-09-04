@@ -38,3 +38,23 @@ test:
     - flake8 project
     - black project --check
     - isort project/**/*.py --check-only
+
+
+deploy:
+  stage: deploy
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+    HEROKU_APP_NAME: young-escarpment-66229
+    HEROKU_REGISTRY_IMAGE: registry.heroku.com/${young-escarpment-66229}/web
+  script:
+    - apk add --no-cache curl
+    - chmod +x ./release.sh
+    - docker build
+        --tag $HEROKU_REGISTRY_IMAGE
+        --file ./Dockerfile.prod
+        "."
+    - docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker push $HEROKU_REGISTRY_IMAGE
+    - ./release.sh
