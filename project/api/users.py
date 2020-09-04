@@ -1,11 +1,7 @@
 # project/api/users.py
 
-# from sqlalchemy import exc
 from flask import Blueprint, request
 from flask_restx import Api, Resource, fields
-
-from project import db
-from project.api.models import User
 
 from project.api.crud import (
     get_all_users,
