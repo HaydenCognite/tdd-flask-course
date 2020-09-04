@@ -31,11 +31,7 @@ def test_add_user(test_app, monkeypatch):
 
 def test_add_user_invalid_json(test_app):
     client = test_app.test_client()
-    resp = client.post(
-        "/users",
-        data=json.dumps({}),
-        content_type="application/json",
-    )
+    resp = client.post("/users", data=json.dumps({}), content_type="application/json",)
     data = json.loads(resp.data.decode())
     assert resp.status_code == 400
     assert "Input payload validation failed" in data["message"]
@@ -232,9 +228,7 @@ def test_update_user_invalid(
     monkeypatch.setattr(project.api.users, "get_user_by_id", mock_get_user_by_id)
     client = test_app.test_client()
     resp = client.put(
-        f"/users/{user_id}",
-        data=json.dumps(payload),
-        content_type="application/json",
+        f"/users/{user_id}", data=json.dumps(payload), content_type="application/json",
     )
     data = json.loads(resp.data.decode())
     assert resp.status_code == status_code
