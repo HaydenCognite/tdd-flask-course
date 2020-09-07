@@ -21,13 +21,13 @@ ENV PYTHONUNBUFFERED 1
 
 
 # add and install requirements
-RUN pip install --upgrade-pip
+RUN pip3 install --upgrade-pip
 COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+RUN pip3 wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 # lint
 COPY . /usr/src/app/
-RUN pip install black flake8 isort
+RUN pip3 install black flake8 isort
 RUN flake8 project
 RUN black --exclude=migrations project
 RUN isort project/**/*.py
@@ -57,8 +57,8 @@ RUN apk update \
 # install dependencies
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install --no-cache /wheels/*
+RUN pip3 install --upgrade pip
+RUN pip3 install --no-cache /wheels/*
 
 # add app
 COPY . /usr/src/app
