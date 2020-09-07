@@ -1,5 +1,7 @@
 # project/tests/test_users_unit.py
 
+# fmt: off
+
 import json
 from datetime import datetime
 
@@ -233,3 +235,5 @@ def test_update_user_invalid(
     data = json.loads(resp.data.decode())
     assert resp.status_code == status_code
     assert message in data["message"]
+
+# fmt: on
