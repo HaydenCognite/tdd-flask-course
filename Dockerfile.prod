@@ -21,7 +21,7 @@ ENV PYTHONUNBUFFERED 1
 
 
 # add and install requirements
-RUN pip3 install --upgrade-pip
+# RUN pip3 install --upgrade-pip
 COPY ./requirements.txt .
 RUN pip3 wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
@@ -57,7 +57,8 @@ RUN apk update \
 # install dependencies
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip3 install --upgrade pip
+# RUN python3 -m pip3 install --upgrade pip
+# RUN pip3 install --update pip
 RUN pip3 install --no-cache /wheels/*
 
 # add app

@@ -15,7 +15,8 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /usr/src/app
 
 # install dependencies
-RUN pip3 install --upgrade pip
+# RUN pip3 install --upgrade pip
+# RUN python3 -m pip3 install --upgrade pip
 COPY ./requirements.txt /usr/src/app/requirements.txt
 COPY ./requirements-dev.txt /usr/src/app/requirements-dev.txt
 RUN pip3 install -r requirements-dev.txt
