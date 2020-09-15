@@ -1,10 +1,14 @@
 # manage.py
 
 import sys
+
+import isort
 from flask.cli import FlaskGroup
 
 from project import create_app, db
 from project.api.models import User
+
+isort.file("manage.py")
 
 app = create_app()
 cli = FlaskGroup(app)

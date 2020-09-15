@@ -1,11 +1,15 @@
 # project/__init__.py
 
+
 import os
+
+import isort
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+isort.file("project/__init__.py")
 
-# instantiate the db
+# instantiate the extensions
 db = SQLAlchemy()
 
 
@@ -23,9 +27,10 @@ def create_app(script_info=None):
 
     # register blueprints
     from project.api.ping import ping_blueprint
-    from project.api.users import users_blueprint
 
     app.register_blueprint(ping_blueprint)
+    from project.api.users import users_blueprint
+
     app.register_blueprint(users_blueprint)
 
     # shell context for flask cli

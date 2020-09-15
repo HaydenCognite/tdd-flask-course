@@ -1,9 +1,11 @@
 # project/api/models.py
 
-
+import isort
 from sqlalchemy.sql import func
 
 from project import db
+
+isort.file("project/api/models.py")
 
 
 class User(db.Model):
