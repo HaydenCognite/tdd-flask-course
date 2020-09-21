@@ -3,11 +3,11 @@
 
 import os
 
-import isort
+# import isort
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-isort.file("project/__init__.py")
+# isort.file("project/__init__.py")
 
 # instantiate the extensions
 db = SQLAlchemy()
